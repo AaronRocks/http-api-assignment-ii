@@ -64,6 +64,7 @@ const sendPost = (e, nameForm) => {
 
   // for handling get
 const sendAjax = (e, userForm) => {
+  debugger;
     e.preventDefault();
     
     let userRequestType = userForm.getAttribute('method');
