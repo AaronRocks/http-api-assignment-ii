@@ -13,7 +13,7 @@ const respondJSONMeta = (request, response, status) => {
 
 const getUsers = (request, response) => {
   const responseJSON = {
-    users,
+    message: users,
   };
 
   respondJSON(request, response, 200, responseJSON);
@@ -38,18 +38,30 @@ const addUser = (request, response, body) => {
   }
 
   users[body.name].name = body.name;
-  users[body.age].age = body.age;
+  users[body.name].age = body.age;
 
   if (responseCode === 201) {
     responseJSON.message = 'Created Successfully';
     return respondJSON(request, response, responseCode, responseJSON);
   }
 
-  // 204 is a head-type request that says the object was successfully updated, no data is sent back
   return respondJSONMeta(request, response, responseCode);
+};
+
+const noUser = (request, response, status) => {
+  const notFound = {
+    message: 'page not found',
+    id: 'notFound',
+  };
+  if (status === 'GET') {
+    respondJSON(request, response, 404, notFound);
+  } else {
+    respondJSONMeta(request, response, 404);
+  }
 };
 
 module.exports = {
   getUsers,
   addUser,
+  noUser,
 };

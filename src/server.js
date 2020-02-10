@@ -26,16 +26,25 @@ const handlePost = (request, response, parsedUrl) => {
 
       jsonHandler.addUser(request, response, bodyParams);
     });
+  } else {
+    jsonHandler.noUser(request, response, request.method);
   }
 };
 
 const handleGet = (request, response, parsedUrl) => {
   if (parsedUrl.pathname === '/style.css') {
     htmlHandler.getCSS(request, response);
+  } else if (parsedUrl.pathname === '/') {
+    htmlHandler.getIndex(request, response);
+  } else if (parsedUrl.pathname === '/main.js') {
+    htmlHandler.getJS(request, response);
   } else if (parsedUrl.pathname === '/getUsers') {
     jsonHandler.getUsers(request, response);
+  } else if (parsedUrl.pathname === '/notReal') {
+    jsonHandler.noUser(request, response, request.method);
   } else {
-    htmlHandler.getIndex(request, response);
+    // default to 404
+    jsonHandler.noUser(request, response, request.method);
   }
 };
 
