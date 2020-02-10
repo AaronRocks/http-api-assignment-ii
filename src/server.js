@@ -32,11 +32,11 @@ const handlePost = (request, response, parsedUrl) => {
 };
 
 const handleGet = (request, response, parsedUrl) => {
-  if (parsedUrl.pathname === '/style.css') {
+  if (parsedUrl.pathname === '/client/style.css') {
     htmlHandler.getCSS(request, response);
   } else if (parsedUrl.pathname === '/') {
     htmlHandler.getIndex(request, response);
-  } else if (parsedUrl.pathname === '/main.js') {
+  } else if (parsedUrl.pathname === '/bundle.js') {
     htmlHandler.getJS(request, response);
   } else if (parsedUrl.pathname === '/getUsers') {
     jsonHandler.getUsers(request, response);
